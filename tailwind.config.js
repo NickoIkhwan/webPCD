@@ -2,7 +2,6 @@
 export default {
   content: [
     "./myapp/templates/**/*.html",
-    "./api/templates/**/*.html",
   ],
   theme: {
     extend: {},

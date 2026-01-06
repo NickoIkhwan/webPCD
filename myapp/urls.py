@@ -3,7 +3,6 @@ import myapp.views as views
 import django.contrib.admin as admin
 
 urlpatterns = [
-    path('api/', include('api.urls')),
     path('', views.menu, name='menu'),
     path('traffic/', views.traffic_view, name='traffic'),
     path('about/', views.about, name='about'),

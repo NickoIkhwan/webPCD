@@ -17,6 +17,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_ROOT = BASE_DIR/'myapp'/'media'
 MEDIA_URL = '/media/'
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 # This is the URL used to access media in the browser
 
 # Quick-start development settings - unsuitable for production
@@ -28,7 +30,7 @@ SECRET_KEY = 'django-insecure-1+*4#52%(ibk-rwry0!q9(%7#il5@+ny1un48d!cp9fe5v=+ir
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nick0079.pythonanywhere.com']
 
 
 # Application definition
@@ -42,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-    'api',
     'myapp',
 ]
 
