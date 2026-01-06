@@ -14,6 +14,11 @@ detector = TrafficDetector(MODEL_PATH)
 def detect_stream(request, file_id):
     doc = get_object_or_404(Document, id=file_id)
     file_path = doc.uploaded_file.path
+    
+    # Track current file being processed
+    detector.current_file_id = file_id
+    detector.stop_processing = False
+    
     return StreamingHttpResponse(
         detector.process_file(file_path),
         content_type='multipart/x-mixed-replace; boundary=frame'
@@ -24,7 +29,25 @@ def get_vehicle_count(request):
 
 def delete_file(request, file_id):
     doc = get_object_or_404(Document, id=file_id)
+    # Get the file path before deleting from database
+    file_path = doc.uploaded_file.path
+    
+    # If this file is currently being processed, stop it
+    if detector.current_file_id == file_id:
+        detector.stop_processing = True
+        import time
+        time.sleep(1)  # Wait for stream to stop
+    
+    # Delete from database
     doc.delete()
+    
+    # Delete the physical file from the uploads folder
+    if os.path.exists(file_path):
+        try:
+            os.remove(file_path)
+        except OSError as e:
+            print(f"Error deleting file {file_path}: {e}")
+    
     return redirect('traffic')
 
 # def file_upload(request):

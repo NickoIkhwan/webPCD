@@ -10,6 +10,8 @@ class TrafficDetector:
         self.model_path = os.path.join(settings.MEDIA_ROOT, model_rel_path)
         self.model = YOLO(self.model_path)
         self.objects_count = 0  # Store current vehicle count
+        self.current_file_id = None  # Track currently processing file
+        self.stop_processing = False  # Flag to stop processing
 
     def process_file(self, file_path):
         ext = os.path.splitext(file_path)[1].lower()
@@ -42,6 +44,10 @@ class TrafficDetector:
 
         cap = cv2.VideoCapture(video_path)
         while cap.isOpened():
+            # Check if stop processing flag is set
+            if self.stop_processing:
+                break
+            
             ret, frame = cap.read()
             if not ret: break
             
