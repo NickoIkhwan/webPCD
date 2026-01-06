@@ -33,10 +33,10 @@ class TrafficDetector:
                b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n')
 
     def get_frames(self, video_path):
-        current_timer = 10
+        current_timer = 10        # Start with 10 seconds
         last_time_update = time.time()
-        lampu_state = "RED"
-        total_objek = 0
+        lampu_state = "GREEN"     # Start with GREEN
+        objects_count = 0
 
 
         cap = cv2.VideoCapture(video_path)
@@ -50,25 +50,28 @@ class TrafficDetector:
             if time.time() - last_time_update >= 1:
                 if current_timer > 0:
                     current_timer -= 1
-            last_time_update = time.time()
+                last_time_update = time.time()
 
             if current_timer <= 0:
                 if lampu_state == "RED":
+                    # Switch to GREEN
                     lampu_state = "GREEN"
-                    current_timer = 20 if total_objek > 20 else 10
+                    # If it's quiet, keep green short. If busy, green stays longer to clear traffic.
+                    current_timer = 20 if objects_count > 20 else 10
+                    
+                else: # If currently GREEN
+                    # Switch to RED
+                    lampu_state = "RED"
+                    # If busy, red stays longer to manage other lanes (simulated).
+                    current_timer = 30 if objects_count > 20 else 15
 
-            else:
-                lampu_state = "RED"
-                current_timer = 30 if total_objek > 20 else 15
-
-            color_map = {
-                "RED" : (0, 0, 255),
-                "GREEN" : (0, 255, 0)
-            }
+            color_map = {"RED": (0, 0, 255), "GREEN": (0, 255, 0)}
             current_color = color_map[lampu_state]
 
-            cv2.putText(frame, f"lampu: {lampu_state}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, current_color, 2)
-
+            cv2.putText(frame, f"STATUS: {lampu_state}", (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, current_color, 3)
+            cv2.putText(frame, f"TIMER: {current_timer}s", (20, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+            cv2.putText(frame, f"VEHICLES: {objects_count}", (20, 150), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+            
             _, buffer = cv2.imencode('.jpg', annotated_frame)
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n')
