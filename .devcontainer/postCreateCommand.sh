@@ -17,7 +17,9 @@ if [ -f "package.json" ]; then
 fi
 
 # Run migrations
+python manage.py makemigrations myapp
 python manage.py migrate
+
 
 echo "-------------------------------------------------------"
 echo "Environment setup complete!"
