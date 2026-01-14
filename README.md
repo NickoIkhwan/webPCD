@@ -1,3 +1,12 @@
+---
+title: PCD
+emoji: 🚀
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_port: 7860
+---
+
 # 🚦 Smart Traffic Control System (YOLO-based)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/NickoIkhwan/webPCD)
