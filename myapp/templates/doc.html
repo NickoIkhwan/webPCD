@@ -1,46 +1,62 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @tailwind base;
-        @tailwind components;
-        @tailwind utilities;
-        
-        @layer base {
-            html, body {
-                @apply !m-0 !p-0;
-            }
-        }
-    </style>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}?v=2">
-    <title>Document</title>
-</head>
-<body>
-    <nav class="/* normal */ rounded-full ">
-        <div class="/* normal */ grid grid-cols-3
-                    /* shadow */ shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)]">
-        <div><a href="{% url 'about' %}" class="nav-button">About</a></div>
-        <div><a href="{% url 'menu' %}" class="nav-button">Menu</a></div>
-        <div><a href="{% url 'traffic' %}" class="nav-button">Traffic</a></div>
-    </div>
-    </nav>
-    <div class="grid-container">
-        <div class="col-span-2 text-center h-[10%]">
-            <h1 class="mb-4">Documentation</h1>
-            <div class="relative group col-span-2">
-                <div class="flex flex-col absolute left-3 bg-[#17BEBB] rounded-[20px]">
-                    <div class="col-span-2 text-center">Model</div> 
-                    <div class="flex flex-row gap-2"> <img src="{% static 'assets/yolo.png' %}" alt="" class="w-[200px] h-[200px] rounded-[20px] m-4">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia eligendi aut laborum, cupiditate repudiandae dignissimos alias rerum rem, veritatis eveniet corporis animi at reiciendis, assumenda quibusdam quo aperiam magnam illo.</p></div>
-                    </div>
+
+{% block title %}Documentation{% endblock %}
+
+{% block content %}
+<div class="grid-container">
+    <div class="col-span-2 text-center h-[10%]">
+        <h1 class="mb-4 font-bold text-[90px]">Documentation</h1>
+
+        <div class="relative group col-span-2 mb-8">
+            <div class="flex flex-col bg-[#17BEBB] rounded-[20px] p-6 shadow-lg">
+                <div class="text-2xl font-bold mb-4">
+                    Latar Belakang
                 </div>
-                
+                <div class="flex flex-col md:flex-row gap-4">
+                    <p class="text-left leading-relaxed">Kemacetan lalu lintas merupakan permasalahan yang umum
+                        terjadi di hampir seluruh wilayah Indonesia. Pertumbuhan kendaraan
+                        yang meningkat 4-5% per tahun pada periode sebelum pandemi yang
+                        tidak diimbangi dengan perluasan kapasitas jalan yang memadai
+                        seringkali menyebabkan penumpukan kendaraan pada tempat tempat
+                        tertentu khususnya pada area persipamngan dan lampu lalu lintas. Kota
+                        kota besar seperti Jakarta, Surabaya, atau Bandung memiliki indeks
+                        kemacetan tertinggi berdasarkan data TomTom Traffic Index atau BPS.
+                        Kondisi tersebut tidak hanya menghambat mobilitas masyarakat, tetapi
+                        juga berdampak pada aspek ekonomi, lingkungan, dan sosial, seperti
+                        meningkatnya konsumsi bahan bakar, polusi udara, dan menurunnya
+                        efektivitas waktu kerja. Oleh karena itu, diperlukan solusi yang bisa
+                        membantu mengoptimalkan arus kendaraan dan mengurangi tingkat
+                        kemacetan di area perkotaan.serta mengurangi tingkat kemacetan
+                        dengan sistem lalu lintas yang lebih efektif.</p>
+                </div>
+            </div>
         </div>
+
+        <div class="relative group col-span-2">
+            <div class="flex flex-col bg-[#17BEBB] rounded-[20px] p-6 shadow-lg">
+                <div class="text-2xl font-bold mb-4">
+                    Model yang digunakan
+                </div>
+                <div class="flex flex-col md:flex-row gap-6 items-center">
+                    <img src="{% static 'assets/yolo.png' %}" alt="YOLO Model"
+                        class="w-[200px] h-[200px] rounded-[20px] object-cover">
+                    <p class="text-left leading-relaxed">YOLO (You Only Look Once) adalah serangkaian model visi
+                        komputer yang telah mendapatkan popularitas signifikan sejak Joseph Redmon, Santosh Divvala,
+                        Ross Girshick, dan Ali Farhadi memperkenalkan arsitektur baru ini pada tahun 2016 di CVPR –
+                        bahkan memenangkan Penghargaan Pilihan Publik OpenCV.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative group col-span-2 mt-8">
+            <div class="relative top-1/2 col-span-2 bg-[#17BEBB] rounded-[20px] h-[50px] p-4">
+            <button class="relative group bg-blue-300 w-[200px]">
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=pX1xAZo1OO-EFl9A">Video Youtube</a>
+            </button>
+            </div>
+        </div>
+
     </div>
-</body>
-</html>
+</div>
+{% endblock %}

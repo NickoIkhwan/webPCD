@@ -1,81 +1,68 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @tailwind base;
-        @tailwind components;
-        @tailwind utilities;
-        
-        @layer base {
-            html, body {
-                @apply !m-0 !p-0;
-            }
-        }
-    </style>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}?v=2">
-    <title>Main</title>
-</head>
-<nav class="/* normal */ overflow-hidden"> 
-    <div class="/* normal */ grid grid-cols-3
-                        /* shadow */ shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)]">
-        <div><a href="{% url 'about' %}" class="nav-button">About</a></div>
-        <div><a href="{% url 'menu' %}" class="nav-button">Menu</a></div>
-         <div><a href="{% url 'doc' %}" class="nav-button">Doc</a></div>
-    </div>
-</nav>
+{% block title %}Main{% endblock %}
 
-<body>
-    <div class="grid-container">
-        <div class="flex flex-row gap-2">
-            <div class="flex flex-col h-full w-full gap-2">
-                <div class="relative group bg-[#17BEBB] h-[80%] rounded-tl-[70px] text-right flex-grow-reverse overflow-hidden shadow-[inset_0_5px_20px_1px_rgba(0,0,0,0.1)]
+{% block content %}
+<div class="grid-container">
+    <div class="flex flex-row gap-2">
+        <div class="flex flex-col h-full w-full gap-2">
+            <div class="relative group bg-[#17BEBB] h-[80%] rounded-tl-[70px] text-right flex-grow-reverse overflow-hidden shadow-[inset_0_5px_20px_1px_rgba(0,0,0,0.1)]
                             hover:bg-gray-100 hover:-translate-y-1 hover:shadow-lg transition-all" id="Mulai">
 
-                    <h1 class="font-mono text-[50px] font-bold text-white absolute top-1/2 z-10 left-3
-                                group-hover:scale-150 group-hover:-translate-y-3 group-hover:translate-x-7 group-hover:text-black group-hover:-translate-y-6 transition-all ease-in-out duration-300">Start</h1>
+                <h1
+                    class="font-mono text-[50px] font-bold text-white absolute top-1/2 z-10 left-3
+                                group-hover:scale-150 group-hover:-translate-y-3 group-hover:translate-x-7 group-hover:text-black group-hover:-translate-y-6 transition-all ease-in-out duration-300">
+                    Start</h1>
 
-                    <div class="bg-white shadow-lg h-[2%] absolute top-[70%] left-[10000px] w-[100%] max-w-[900px] z-9
-                                group-hover:-translate-x-[10000px] group-hover:z-9 group-hover:h-[5%] group-hover:bg-[#17BEBB] transition-all ease-in-out duration-300"></div>
-
+                <div
+                    class="bg-white shadow-lg h-[2%] absolute top-[70%] left-[10000px] w-[100%] max-w-[900px] z-9
+                                group-hover:-translate-x-[10000px] group-hover:z-9 group-hover:h-[5%] group-hover:bg-[#17BEBB] transition-all ease-in-out duration-300">
                 </div>
-                <div class="relative group bg-[#17BEBB] h-[20%] rounded-bl-full overflow-hidden flex-grow-reverse shadow-[inset_0_5px_20px_1px_rgba(0,0,0,0.1)]
+
+            </div>
+            <div class="relative group bg-[#17BEBB] h-[20%] rounded-bl-full overflow-hidden flex-grow-reverse shadow-[inset_0_5px_20px_1px_rgba(0,0,0,0.1)]
                             hover:bg-gray-100 hover:-translate-y-1 hover:shadow-lg transition-all" id="doc">
 
-                            <h1 class="font-mono font-bold text-2xl absolute top-1 right-2 text-white
-                                       group-hover:text-black transition-all ease-in-out duration-300">Documentation</h1>
+                <h1 class="font-mono font-bold text-2xl absolute top-1 right-2 text-white
+                                       group-hover:text-black transition-all ease-in-out duration-300">Documentation
+                </h1>
 
-                            <div class="absolute top-1/2 right-[2000px] h-[15%] w-[100%] max-w-[800px] bg-white
-                                        group-hover:translate-x-[1815px] group-hover:bg-[#17BEBB] transition-all ease-in-out duration-300"></div>
-
+                <div
+                    class="absolute top-1/2 right-[2000px] h-[15%] w-[100%] max-w-[800px] bg-white
+                                        group-hover:translate-x-[1815px] group-hover:bg-[#17BEBB] transition-all ease-in-out duration-300">
                 </div>
+
             </div>
-            <div class="relative group col-span-2 bg-[#17BEBB] w-[30%] rounded-r-[70px] overflow-hidden shadow-[inset_0_5px_20px_1px_rgba(0,0,0,0.1)]
+        </div>
+        <div class="relative group col-span-2 bg-[#17BEBB] w-[30%] rounded-r-[70px] overflow-hidden shadow-[inset_0_5px_20px_1px_rgba(0,0,0,0.1)]
                         hover:bg-gray-100 hover:-translate-y-1 hover:shadow-lg transition-all" id="About">
 
-                        <h1 class="font-mono font-bold text-2xl text-white absolute left-3 
-                                    group-hover:translate-x-2 group-hover:text-black transition-all ease-in-out duration-300">About</h1>
+            <h1
+                class="font-mono font-bold text-2xl text-white absolute left-3 
+                                    group-hover:translate-x-2 group-hover:text-black transition-all ease-in-out duration-300">
+                About</h1>
 
-                        <div class="bg-white h-[900px] w-[5px] absolute left-3 top-[1000px]
-                                    group-hover:-translate-y-[1000px] group-hover:bg-[#17BEBB] transition-all ease-in-out duration-300"></div>
-
-                        <div class="bg-white h-[900px] w-[5px] absolute left-5 top-[1000px]
-                                    group-hover:-translate-y-[969px] group-hover:bg-[#17BEBB] transition-all ease-in-out duration-300"></div>
-
-                        
+            <div
+                class="bg-white h-[900px] w-[5px] absolute left-3 top-[1000px]
+                                    group-hover:-translate-y-[1000px] group-hover:bg-[#17BEBB] transition-all ease-in-out duration-300">
             </div>
-        </div>
-        <div class="relative group row-span-2">
-            <h1 class="font-mono font-bold text-[30px] absolute left-3">Sistem Y/N</h1>
-        </div>
-        <div>5</div>
-    </div>
-    <script src="{% static 'js/index.js' %}"></script>
-</body>
 
-</html>
+            <div
+                class="bg-white h-[900px] w-[5px] absolute left-5 top-[1000px]
+                                    group-hover:-translate-y-[969px] group-hover:bg-[#17BEBB] transition-all ease-in-out duration-300">
+            </div>
+
+
+        </div>
+    </div>
+    <div class="relative group row-span-2">
+        <img src="{% static 'assets/mybini.jpg' %}" alt="" class="rounded-[60px]">
+    </div>
+    <div class="">Traffic System</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

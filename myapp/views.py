@@ -25,7 +25,14 @@ def detect_stream(request, file_id):
     )
 
 def get_vehicle_count(request):
-    return JsonResponse({'objects_count': detector.objects_count})
+    return JsonResponse({
+        'objects_count': detector.objects_count,
+    })
+
+def get_traffic_weight(request):
+    return JsonResponse({
+        'traffic_weight': detector.traffic_weight
+    })
 
 def delete_file(request, file_id):
     doc = get_object_or_404(Document, id=file_id)
@@ -91,7 +98,8 @@ def traffic_view(request):
         'form': form,
         'files':files,
         'active_file_id': active_file_id,
-        'objects_count': detector.objects_count
+        'objects_count': detector.objects_count,
+        'traffic_weight': detector.traffic_weight
         })
 
 def about(request):

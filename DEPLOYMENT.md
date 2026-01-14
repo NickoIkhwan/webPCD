@@ -2,9 +2,17 @@
 
 ## Pre-Deployment Checklist
 
-### 1. Environment Setup
+### 1. Recommended Testing Method: GitHub Codespaces
+The project is configured for **One-Click Testing** via GitHub:
+- [ ] Push latest changes to GitHub.
+- [ ] Open the repo in **GitHub Codespaces**.
+- [ ] Run `python manage.py runserver`.
+- [ ] Done! Dependencies and migrations are handled automatically.
+
+### 2. Environment Setup (Standard Host)
 - [ ] Copy `.env.example` to `.env`
 - [ ] Update `.env` with your production values:
+
   - Generate a new SECRET_KEY (use `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"`)
   - Set `DEBUG=False`
   - Add your domain to `ALLOWED_HOSTS`

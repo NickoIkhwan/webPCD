@@ -1,0 +1,25 @@
+{
+    "name": "Smart Traffic Control System",
+    "image": "mcr.microsoft.com/devcontainers/python:3.10",
+    "features": {
+        "ghcr.io/devcontainers/features/node:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance"
+            ]
+        }
+    },
+    "postCreateCommand": "bash .devcontainer/postCreateCommand.sh",
+    "portsAttributes": {
+        "8000": {
+            "label": "Django Server",
+            "onAutoForward": "openPreview"
+        }
+    },
+    "forwardPorts": [
+        8000
+    ]
+}

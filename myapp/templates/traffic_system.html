@@ -1,104 +1,91 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @tailwind base;
-        @tailwind components;
-        @tailwind utilities;
-        
-        @layer base {
-            html, body {
-                @apply !m-0 !p-0;
-            }
-        }
-    </style>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}?v=2">
-    <title>System</title>
-</head>
+{% block title %}System{% endblock %}
 
-<body>
-    <nav>
-        <div class="/* normal */ container-h
-                /* shadow */ shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)]">
-            <div><a href="{% url 'about' %}" class="nav-button">About</a></div>
-            <div><a href="{% url 'menu' %}" class="nav-button">Menu</a></div>
-             <div><a href="{% url 'doc' %}" class="nav-button">Doc</a></div>
-        </div>
-    </nav>
-
-    <div class="grid-container">
-        <div class="/* normal */ col-span-2 text-center">
-            <h1 class="title">Smart Traffic Control System</h1>
-            <marquee class="/* normal */ animate-bounce">Keompok 3</marquee>
-        </div>
-
-        <!-- Output Section -->
-        <div class="/* normal */ relative group shadow-lg rounded-md min-h-[600px]">
-            {% if active_file_id %}
-            <h3>Demo berhasil</h3>
-            <img src="{% url 'detect_stream' active_file_id %}" width="640" class="/* normal */ w-full h-5/6">
-            <p class="/* normal */ text-center mt-4 text-lg font-semibold">Vehicles Detected: <span id="vehicleCount">{{ objects_count }}</span></p>
-            {% else %}
-            <p>Upload file atau pilih dari file yang tersedia untuk memulai demo.</p>
-            {% endif %}
-
-            
-        </div>
-
-        <!-- Form Section -->
-        <div class="/* normal */ shadow-lg rounded-md p-4 m-4 h-full max-w-full">
-            <form method="post" enctype="multipart/form-data" class="/* normal */ flex flex-col items-center">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="/* normal */ bg-gray-300 rounded-md w-1/2 m-2
-                        /* hover */ transition-all hover:bg-blue-300">Upload File</button>
-            </form>
-
-            <!-- File List Section -->
-            <div class="/* normal */ list-section">
-                <h3 class="/* normal */ text-center mb-3">Available Files</h3>
-                <table>
-                    {% for file in files %}
-                    <tr>
-                        <td class="/* normal */ max-w-full overflow-hidden">
-                            {% if file.filename|length > 40 %}
-                            <marquee behavior="scroll" direction="left">{{ file.filename }}</marquee>
-                            {% else %}
-                            <p>{{ file.filename }}</p>
-                            {% endif %}
-                        </td>
-                        <td><a href="?play={{ file.id }}" class="/* normal */ bg-blue-300 rounded-md
-                        /* hover */ transition-all hover:bg-blue-400">Deteksi</a></td>
-                        <td><a href="{% url 'delete_file' file.id %}" class="/* normal */ bg-red-300 rounded-md
-                        /* hover */ transition-all hover:bg-red-400">Hapus</a></td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
-        </div>
+{% block content %}
+<div class="grid-container">
+    <div class="/* normal */ col-span-2 text-center">
+        <h1 class="title">Smart Traffic Control System</h1>
+        <marquee class="/* normal */ animate-bounce">Keompok 3</marquee>
     </div>
 
-    <script>
-        // Update vehicle count every 500ms when a video is playing
-        const activeFileId = `{{ active_file_id }}`;
-        
-        if (activeFileId) {
-            const updateVehicleCount = () => {
-                fetch(`{% url "vehicle_count" %}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        document.getElementById('vehicleCount').innerText = data.objects_count;
-                    })
-                    .catch(error => console.error('Error fetching vehicle count:', error));
-            };
-            setInterval(updateVehicleCount, 500);
-        }
-    </script>
-</body>
-</html>
+    <!-- Output Section -->
+    <div class="/* normal */ relative group shadow-lg rounded-md min-h-[600px]">
+        {% if active_file_id %}
+        <h3>Demo berhasil</h3>
+        <img src="{% url 'detect_stream' active_file_id %}" width="640" class="/* normal */ w-full h-5/6">
+        <p class="/* normal */ text-center mt-4 text-lg font-semibold">Trafic Weight: <span id="trafficWeight">{{
+                traffic_weight }}</span></p>
+        <p class="/* normal */ text-center mt-2 text-md text-gray-600">Vehicles Count: <span id="vehicleCount">{{
+                objects_count }}</span></p>
+        {% else %}
+        <p>Upload file atau pilih dari file yang tersedia untuk memulai demo.</p>
+        {% endif %}
+
+
+    </div>
+
+    <!-- Form Section -->
+    <div class="/* normal */ shadow-lg rounded-md p-4 m-4 h-full max-w-full">
+        <form method="post" enctype="multipart/form-data" class="/* normal */ flex flex-col items-center">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="/* normal */ bg-gray-300 rounded-md w-1/2 m-2
+                        /* hover */ transition-all hover:bg-blue-300">Upload File</button>
+        </form>
+
+        <!-- File List Section -->
+        <div class="/* normal */ list-section">
+            <h3 class="/* normal */ text-center mb-3">Available Files</h3>
+            <table>
+                {% for file in files %}
+                <tr>
+                    <td class="/* normal */ max-w-full overflow-hidden">
+                        {% if file.filename|length > 40 %}
+                        <marquee behavior="scroll" direction="left">{{ file.filename }}</marquee>
+                        {% else %}
+                        <p>{{ file.filename }}</p>
+                        {% endif %}
+                    </td>
+                    <td><a href="?play={{ file.id }}" class="/* normal */ bg-blue-300 rounded-md
+                        /* hover */ transition-all hover:bg-blue-400">Deteksi</a></td>
+                    <td><a href="{% url 'delete_file' file.id %}" class="/* normal */ bg-red-300 rounded-md
+                        /* hover */ transition-all hover:bg-red-400">Hapus</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Update vehicle count every 500ms when a video is playing
+    const activeFileId = `{{ active_file_id }}`;
+
+    if (activeFileId) {
+        const updateVehicleCount = () => {
+            fetch(`{% url "vehicle_count" %}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('vehicleCount').innerText = data.objects_count;
+                })
+                .catch(error => console.error('Error fetching count:', error));
+        };
+
+        const updateVehicleWeights = () => {
+            fetch(`{% url "traffic_weight" %}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('trafficWeight').innerText = data.traffic_weight;
+                })
+                .catch(error => console.error('Error fetching weight:', error));
+        };
+
+        setInterval(updateVehicleCount, 500);
+        setInterval(updateVehicleWeights, 500);
+    }
+</script>
+{% endblock %}

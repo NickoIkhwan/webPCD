@@ -33,7 +33,8 @@ body {
 }
 
 
-/* ===== NAVIGATION ===== */
+/* Standardized navbar is now handled via partials/navbar.html and Tailwind */
+/* 
 nav {
     display: flex;
     flex-direction: row;
@@ -50,13 +51,7 @@ nav {
     text-decoration: none;
     margin-right: 20px;
 }
-
-.nav-text {
-    margin: 5px;
-    color: #f70000;
-    font-size: medium;
-    margin-top: 15px;
-}
+*/
 
 
 /* ===== LAYOUT CONTAINERS ===== */
