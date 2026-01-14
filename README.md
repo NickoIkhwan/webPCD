@@ -7,61 +7,60 @@ sdk: docker
 app_port: 7860
 ---
 
-# 🚦 Smart Traffic Control System (YOLO-based)
+# 🚦 Sistem Kontrol Lalu Lintas Pintar (Berbasis YOLO)
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/NickoIkhwan/webPCD)
+[![Buka di GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/NickoIkhwan/webPCD)
 
-A modern Django-based web application that uses **YOLO (You Only Look Once)** to detect vehicles in real-time and intelligently control traffic lights based on traffic density.
+Aplikasi web berbasis Django modern yang menggunakan **YOLO (You Only Look Once)** untuk mendeteksi kendaraan secara real-time dan mengontrol lampu lalu lintas secara cerdas berdasarkan kepadatan kendaraan.
 
-## 🚀 Key Features
-- **Real-time Vehicle Detection**: Uses YOLO (Ultra-analytics) for high-accuracy vehicle classification.
-- **Intelligent Traffic Logic**: Dynamic traffic light timers based on "Traffic Weight" (Large vehicles = higher weight).
-- **Interactive Dashboard**: Modern UI with live camera/video processing streams.
-- **File Support**: Process both static images and video files.
-- **Optimized for CPU**: Configured to run efficiently on standard servers/laptops without a dedicated GPU.
+## 🚀 Fitur Utama
+- **Deteksi Kendaraan Real-time**: Menggunakan YOLO (Ultralytics) untuk klasifikasi kendaraan dengan akurasi tinggi.
+- **Logika Lalu Lintas Pintar**: Timer lampu lalu lintas dinamis berdasarkan "Bobot Lalu Lintas" (Kendaraan besar = bobot lebih tinggi).
+- **Dashboard Interaktif**: UI modern dengan streaming pemrosesan video/kamera secara langsung.
+- **Dukungan File**: Memproses file gambar statis maupun video.
+- **Optimasi CPU**: Dikonfigurasi untuk berjalan efisien pada server/laptop standar tanpa GPU khusus.
 
-## 🛠️ Quick Start
+## 🛠️ Mulai Cepat
 
-### 1. Direct Testing (GitHub Codespaces)
-The easiest way for a professor to test this project is via **GitHub Codespaces**:
-1. Go to the [GitHub Repository](https://github.com/NickoIkhwan/webPCD).
-2. Click the green **Code** button and select **Codespaces**.
-3. Create a new codespace on `main`.
-4. Wait for the environment to build (it will automatically install dependencies).
-5. Open a terminal and run:
+### 1. Pengujian Langsung (GitHub Codespaces)
+Cara termudah bagi dosen untuk menguji proyek ini adalah melalui **GitHub Codespaces**:
+1. Buka [Repositori GitHub](https://github.com/NickoIkhwan/webPCD).
+2. Klik tombol hijau **Code** dan pilih **Codespaces**.
+3. Buat codespace baru pada branch `main`.
+4. Tunggu lingkungan dibangun (dependensi akan terinstal secara otomatis).
+5. Buka terminal dan jalankan:
    ```bash
    python manage.py runserver
    ```
-6. Click **Open in Browser** when the notification appears.
+6. Klik **Open in Browser** saat notifikasi muncul.
 
-### 2. Local Setup
+### 2. Pengaturan Lokal
 ```bash
-# Clone the repository
+# Clone repositori
 git clone https://github.com/NickoIkhwan/webPCD.git
 cd webPCD
 
-# Create virtual environment
+# Buat virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Di Windows: venv\Scripts\activate
 
-# Install dependencies
+# Instal dependensi
 pip install -r requirements.txt
 
-# Run migrations
+# Jalankan migrasi database
 python manage.py migrate
 
-# Start the server
+# Jalankan server
 python manage.py runserver
 ```
 
-## 🏗️ Technical Architecture
+## 🏗️ Arsitektur Teknis
 - **Backend**: Django (Python)
 - **Computer Vision**: OpenCV, Ultralytics YOLOv8
 - **Frontend**: Tailwind CSS, PostCSS
-- **Model**: Custom trained/YOLO model located in `myapp/media/model_4/`
+- **Model**: Model YOLO kustom yang terletak di `myapp/media/model_4/`
 
-## 📄 License
-This project is for educational purposes as a Final Project for the Digital Image Processing (PCD) course.
+## 📄 Lisensi
+Proyek ini dibuat untuk tujuan pendidikan sebagai Tugas Akhir mata kuliah Pengolahan Citra Digital (PCD).
 
 ---
-Developed by **Nicko Ikhwan**
