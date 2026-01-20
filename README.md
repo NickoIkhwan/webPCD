@@ -54,10 +54,8 @@ python manage.py migrate
 python manage.py runserver
 ```
 ## Hasil Deploy
-Untuk melihat hasil deploy website, kunjungi halaman berikut
----
-https://pcd2025-irkham.hf.space/
----
+-Untuk melihat hasil deploy website, kunjungi halaman berikut
+-https://pcd2025-irkham.hf.space/
 
 ## 🏗️ Arsitektur Teknis
 - **Backend**: Django (Python)
